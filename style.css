@@ -7,10 +7,6 @@ html {
   -webkit-box-sizing:border-box;
 }
 
-body {
-  overflow-x: hidden;  
-}
-
 li {
     list-style: none;
   }
@@ -39,6 +35,14 @@ ul {
   border: 2px solid #ccc;
   text-align: center;
   border-radius: 5px 5px 0 0;
+  white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  white-space: pre-wrap;       /* css-3 */
+  word-wrap: break-word;       /* Internet Explorer 5.5+ */
+  white-space: -webkit-pre-wrap; /* Newer versions of Chrome/Safari*/
+  word-break: break-all;
+  white-space: normal;
 }
 
 .calendar-header {
@@ -52,7 +56,6 @@ ul {
 }
 
 .users {
-  min-width: 150px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -61,7 +64,7 @@ ul {
 .users li {
   text-align: center;
   --gridWidth: 0px;
-  height: 99px;
+  height: 100px;
   width: 100%;
   background-color: rgb(92, 184, 92);
   color: #fff;
@@ -91,11 +94,12 @@ ul {
 .event-slot {
   position: absolute;
   background-color: darkslategray;
+  border: 1px solid darkgray;
   border-radius: 5px;
   z-index: 5;
   color: white;
   font-size: 12px;
-  height: 33px;
+  height: 33.3px;
   line-height: 33px;
 }
 
@@ -112,7 +116,10 @@ ul {
 
 .backlog {
   overflow-y: scroll;
-  max-height: 800px;
+  position: -webkit-sticky;
+  position: sticky;
+  min-height: 800px;
+  height: 100vh;
 }
 
 .bg-grey {
@@ -133,7 +140,7 @@ ul {
 
 .div-table {
   display: table;             
-  border: 1px solid #666666;         
+  /* border: 1px solid #666666;*/
   border-spacing: 5px; /* cellspacing:poor IE support for  this */
 }
 
@@ -173,9 +180,18 @@ ul {
   }
 
   .div-table {
-    max-width: 100%;
+    width: 100%;
+  }
+
+  .daynumbers li {
+    writing-mode: vertical-lr;
+    text-orientation: sideways;
   }
   
+  .calendar-container {
+    grid-template-columns: 100px auto;
+  }
+
   .users li::after {
     content: "";
     position: absolute;
@@ -184,5 +200,20 @@ ul {
     height: 1px;
     background-color: lightgray;
     z-index: 1;
+  }
+
+  .users li {
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+  }
+
+  .users-container {
+    width: 100px;
+  }
+
+  .event-slot {
+    height: 33.3px;
+    line-height: 33.3px;
   }
 }
